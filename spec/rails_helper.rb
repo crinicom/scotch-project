@@ -28,7 +28,7 @@ Shoulda::Matchers.configure do |config|
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 # Checks for pending migration and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -37,6 +37,8 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
 #Add Factory Girl methods
   config.include FactoryGirl::Syntax::Methods
+  config.include RequestSpecHelper, type: :request
+  
   
   # start truncating all the tables
   config.before(:suite) do
